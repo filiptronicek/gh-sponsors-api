@@ -5,11 +5,11 @@ import json
 from http.server import BaseHTTPRequestHandler
 
 
-def getSponsorCount(u):
+def getSponsorCount(u: str):
     usr = u.split("?u=")[1].split("HTTP")[0].replace(" ", "")
-
     url = f'https://github.com/sponsors/{usr}'
     resp = req.get(url)
+
     if resp.history:
         sponsors = None
     else:

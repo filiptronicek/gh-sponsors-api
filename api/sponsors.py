@@ -5,11 +5,11 @@ import json
 from http.server import BaseHTTPRequestHandler
 usr = "yg"
 
-url = f'https://github.com/sponsors/{usr}'
-resp = req.get(url)
 
-
-def getSponsorNames():
+def getSponsorNames(u: str):
+    usr = u.split("?u=")[1].split("HTTP")[0].replace(" ", "")
+    url = f'https://github.com/sponsors/{usr}'
+    resp = req.get(url)
     if resp.history:
         sponsors = None
     else:
@@ -27,6 +27,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type','application/json')
         self.end_headers()
-        message = getSponsorNames()
+        message = getSponsorNames(self.requestline)
         self.wfile.write(str(message).encode())
         return
