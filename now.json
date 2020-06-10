@@ -1,5 +1,6 @@
 {
     "routes": [
-        {"src": "/(?<id>[^/]*)/count", "dest": "/api/main?u=$id"}
+        {"src": "/(?<id>[^/]*)/count", "dest": "/api/main?u=$id"},
+        {"src": "/(?<id>[^/]*)/sponsors", "dest": "/api/sponsors?u=$id"}
     ]
 }
