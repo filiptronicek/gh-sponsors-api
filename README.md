@@ -1,2 +1,2 @@
 # gh-sponsors-api
- A REST API for GitHub Sponsors
+A REST API for GitHub Sponsors
