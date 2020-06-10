@@ -17,7 +17,7 @@ def getSponsorNames():
         count = htmlGH.select("div.mr-1 > a > img")
         users = []
         for handle in count:
-            users.append({"handle": handle['alt'].replace('@', ''),"avatar": handle['src']})
+            users.append({"handle": handle['alt'].replace('@', ''),"avatar": handle['src'], "profile": "https://github.com/"+handle['alt']})
         d = users
         d = json.dumps(d)
         return d
