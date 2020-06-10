@@ -3,12 +3,13 @@ import requests as req
 import re
 import json
 from http.server import BaseHTTPRequestHandler
-usr = "yg"
 
-url = f'https://github.com/sponsors/{usr}'
-resp = req.get(url)
 
-def getSponsorCount():
+def getSponsorCount(u):
+    usr = u.split("?u=")[1].split("HTTP")[0].replace(" ", "")
+
+    url = f'https://github.com/sponsors/{usr}'
+    resp = req.get(url)
     if resp.history:
         sponsors = None
     else:
@@ -26,6 +27,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type','application/json')
         self.end_headers()
-        message = self.requestline
+        message = getSponsorCount(self.requestline)
         self.wfile.write(str(message).encode())
         return
