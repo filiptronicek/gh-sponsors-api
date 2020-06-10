@@ -3,7 +3,7 @@ import requests as req
 import re
 import json
 from http.server import BaseHTTPRequestHandler
-usr = "filiptronicek"
+usr = "yg"
 
 url = f'https://github.com/sponsors/{usr}'
 resp = req.get(url)
