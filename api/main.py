@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests as req
 import re
 import json
-
+from http.server import BaseHTTPRequestHandler
 usr = "yg"
 
 url = f'https://github.com/sponsors/{usr}'
@@ -33,3 +33,11 @@ def getSponsorNames():
         d = users
         d = json.dumps(d)
         return d
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/plain')
+        self.end_headers()
+        message = getSponsorCount()
+        self.wfile.write(message.encode())
+        return
