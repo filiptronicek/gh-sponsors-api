@@ -21,9 +21,9 @@ def getSponsorNames(u: str):
             users.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt']})
         d = users
         d = json.dumps(d)
-        if sponsors == None:
-            d = "Eror: GitHub Sponsors aren't setup with this user."
-        return d
+    if sponsors == None:
+        d = "Eror: GitHub Sponsors aren't setup with this user."
+    return d
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
