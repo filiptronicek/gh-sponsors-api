@@ -17,7 +17,6 @@ def getSponsorCount():
 
         for txt in count.split(" "):
             x = re.search("[0-9]", txt)
-
             if x:
                 sponsors = int(txt)
     return sponsors
