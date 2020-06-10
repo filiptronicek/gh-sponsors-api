@@ -3,7 +3,7 @@ import requests as req
 import re
 import json
 from http.server import BaseHTTPRequestHandler
-usr = "yg"
+usr = "filiptronicek"
 
 url = f'https://github.com/sponsors/{usr}'
 resp = req.get(url)
@@ -39,5 +39,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/plain')
         self.end_headers()
         message = getSponsorCount()
-        self.wfile.write(message.encode())
+        self.wfile.write(str(message).encode())
         return
