@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests as req
 import re
+import json
 
 usr = "yg"
 
@@ -20,3 +21,16 @@ def getSponsorCount():
             if x:
                 sponsors = int(txt)
     return sponsors
+
+def getSponsorNames():
+    if resp.history:
+        sponsors = None
+    else:
+        htmlGH = BeautifulSoup(resp.text, 'html.parser')
+        count = htmlGH.select("div.mr-1 > a > img")
+        users = []
+        for handle in count:
+            users.append({"handle": handle['alt'].replace('@', ''),"avatar": handle['src']})
+        d = users
+        d = json.dumps(d)
+        return d
