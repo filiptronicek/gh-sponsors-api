@@ -5,7 +5,7 @@ Endpoints:
 
 
 ```
-https://ghs.now.sh/user/sponsors # Get the sponsor details
+https://sponsors.trnck.dev/user/sponsors # Get the sponsor details
 
-https://ghs.now.sh/user/count # Get just the number
+https://sponsors.trnck.dev/user/count # Get just the number
 ```
