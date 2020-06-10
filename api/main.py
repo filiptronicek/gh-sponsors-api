@@ -20,6 +20,8 @@ def getSponsorCount(u: str):
             x = re.search("[0-9]", txt)
             if x:
                 sponsors = int(txt)
+    if sponsors == None:
+        sponsors = "Eror: GitHub Sponsors aren't setup with this user."
     return json.dumps({"count":sponsors})
 
 class handler(BaseHTTPRequestHandler):
