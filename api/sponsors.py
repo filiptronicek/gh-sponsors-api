@@ -21,12 +21,12 @@ def getSponsorNames(u: str):
         users = []
         for handle in count:
             handle['alt'] = handle['alt'].replace('@', '')
-            users.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt']})
+            users.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt'], "details" : json.loads(getUsrDetails(handle['alt']))})
         d = users
         d = json.dumps(d)
     if sponsors == None:
         d = "Eror: GitHub Sponsors aren't setup with this user."
-    return  '{"sponsors": '+d+', "user" :'+getUsrDetails(usr)+"}"
+    return  '{"sponsors": '+d+"}"
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
