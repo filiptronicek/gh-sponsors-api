@@ -3,7 +3,6 @@ import requests as req
 import re
 import json
 from http.server import BaseHTTPRequestHandler
-usr = "yg"
 
 
 def getSponsorNames(u: str):
