@@ -22,7 +22,7 @@ def getSponsorCount(u: str):
                 sponsors = int(txt)
     if sponsors == None:
         sponsors = "Eror: GitHub Sponsors aren't setup with this user."
-    return "sponsors: "+json.dumps({"count":sponsors})
+    return '{"sponsors": '+json.dumps({"count":sponsors})+"}"
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):

@@ -4,6 +4,9 @@ import re
 import json
 from http.server import BaseHTTPRequestHandler
 
+def getUsrDetails(u):
+    reqs = req.get("https://api.github.com/users/"+u).text
+    return reqs
 
 def getSponsorNames(u: str):
     usr = u.split("?u=")[1].split("HTTP")[0].replace(" ", "")
@@ -23,7 +26,7 @@ def getSponsorNames(u: str):
         d = json.dumps(d)
     if sponsors == None:
         d = "Eror: GitHub Sponsors aren't setup with this user."
-    return d
+    return  '{"sponsors": '+d+', "user" :'+getUsrDetails(usr)+"}"
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
