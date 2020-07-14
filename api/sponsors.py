@@ -13,8 +13,8 @@ if environ.get("gh_token") is None:
 
 
 def getUsrDetails(u):
-    headers = {"Authorization": f'token {getenv("gh_token")}'}
-    reqs = req.get("https://api.github.com/users/"+u, headers=headers).text
+   # headers = {"Authorization": f'token {getenv("gh_token")}'}
+    reqs = req.get("https://api.github.com/users/"+u).text
     return reqs
 
 def getSponsorNames(u: str):
