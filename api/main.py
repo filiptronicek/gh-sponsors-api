@@ -4,17 +4,10 @@ import re
 import json
 from http.server import BaseHTTPRequestHandler
 
-from os import environ, getenv
-
-if environ.get("gh_token") is None:
-    from dotenv import load_dotenv
-    load_dotenv()
-
 def getSponsorCount(u: str):
     usr = u.split("?u=")[1].split("HTTP")[0].replace(" ", "")
     url = f'https://github.com/sponsors/{usr}'
-    headers = {"Authorization": getenv("gh_token")}
-    resp = req.get(url, headers=headers)
+    resp = req.get(url)
 
     if resp.history:
         sponsors = None

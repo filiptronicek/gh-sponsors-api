@@ -4,8 +4,17 @@ import re
 import json
 from http.server import BaseHTTPRequestHandler
 
+from os import environ, getenv
+
+if environ.get("gh_token") is None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+headers = {"Authorization": getenv("gh_token")}
+
+
 def getUsrDetails(u):
-    reqs = req.get("https://api.github.com/users/"+u).text
+    reqs = req.get("https://api.github.com/users/"+u, headers=headers).text
     return reqs
 
 def getSponsorNames(u: str):
