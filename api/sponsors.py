@@ -10,10 +10,10 @@ if environ.get("gh_token") is None:
     from dotenv import load_dotenv
     load_dotenv()
 
-headers = {"Authorization": getenv("gh_token")}
 
 
 def getUsrDetails(u):
+    headers = {"Authorization": f'token {getenv("gh_token")}'}
     reqs = req.get("https://api.github.com/users/"+u, headers=headers).text
     return reqs
 
