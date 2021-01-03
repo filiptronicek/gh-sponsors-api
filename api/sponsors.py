@@ -10,11 +10,9 @@ if environ.get("gh_token") is None:
     from dotenv import load_dotenv
     load_dotenv()
 
-
-
 def getUsrDetails(u):
-    #headers = {"Authorization": f'token {getenv("gh_token")}'}
-    #reqs = req.get("https://api.github.com/users/"+u).text
+    headers = {"Authorization": f'token {getenv("gh_token")}'}
+    reqs = req.get("https://api.github.com/users/"+u).text
     reqs = {}
     return reqs
 
@@ -35,8 +33,11 @@ def getSponsorNames(u: str):
             for handle in count:
                 usrCount += 1
                 handle['alt'] = handle['alt'].replace('@', '')
-                totalUsers.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt']})
-            
+                if len(count) > 10:
+                    totalUsers.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt']})
+                else:
+                    totalUsers.append({"handle": handle['alt'],"avatar": handle['src'], "profile": "https://github.com/"+handle['alt'], "details": getUsrDetails(handle['alt'])})
+
             if usrCount == 0:
                 break
 
