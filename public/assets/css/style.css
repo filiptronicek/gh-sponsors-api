@@ -6,3 +6,16 @@ aside {
     width: 90vw !important;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #24292e;
+    color: #d6d8da;
+  }
+  a {
+    color: #e39777 !important;
+  }
+  footer {
+    background: #32383f;
+  }
+}
