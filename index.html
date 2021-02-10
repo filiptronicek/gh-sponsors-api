@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Sponsors API</title>
     <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
     <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <h1>GitHub Sponsors API</h1>
-      <p>An unofficial RESTful API for GitHub Sponsors</p>
+        <h1>GitHub Sponsors API</h1>
+        <p>An unofficial RESTful API for GitHub Sponsors</p>
     </header>
     <main>
-      <section>
-        <figure>
-        <header>
-          <h3>Endpoints:</h3>
-        </header>
-        <aside>
-        Count of a user's sponsors
-        <pre>
-https://sponsors.trnck.dev/user/sponsors <br># Get the sponsor details
+        <section>
+            <figure>
+                <header>
+                    <h3>Endpoints:</h3>
+                </header>
+                <aside>
+                    Count of a user's sponsors
+                    <pre>
+            https://sponsors.trnck.dev/user/sponsors <br># Get the sponsor details
         </pre>
-        </aside>
-        <aside>
-        List of a user's sponsors
-        <pre>
-https://sponsors.trnck.dev/user/count <br># Get just the number
+                </aside>
+                <aside>
+                    List of a user's sponsors
+                    <pre>
+            https://sponsors.trnck.dev/user/count <br># Get just the number
         </pre>
-    </aside>
-        </figure>
-      </section>
+                </aside>
+                <aside>
+                    List of a user's sponsorees (people who are sponsored by the user)
+                    <pre>
+            https://sponsors.trnck.dev/user/sponsoring <br>
+        </pre>
+                </aside>
+            </figure>
+        </section>
     </main>
-  </body>
+</body>
+
 </html>
