@@ -3,10 +3,10 @@ A REST API for GitHub Sponsors
 
 ## Endpoints:  
 
-## [/user/count](https://sponsors.trnck.dev/user/count)
+## /user/count
 Get the count of people who sponsor `user`.
 
-Example query: `https://sponsors.trnck.dev/filiptronicek/sponsors`
+Example query: [`https://sponsors.trnck.dev/filiptronicek/count`](https://sponsors.trnck.dev/filiptronicek/county)
 
 <details>
 <summary>
@@ -22,10 +22,10 @@ Example query: `https://sponsors.trnck.dev/filiptronicek/sponsors`
 ```
 </details>
 
-## [/users/sponsors](https://sponsors.trnck.dev/user/sponsors)
+## /users/sponsors
 Get details of people who sponsor `user`.
 
-Example query: `https://sponsors.trnck.dev/filiptronicek/sponsors`
+Example query: [`https://sponsors.trnck.dev/filiptronicek/sponsors`](https://sponsors.trnck.dev/filiptronicek/sponsors)
 
 <details>
 <summary>
@@ -196,10 +196,10 @@ Example query: `https://sponsors.trnck.dev/filiptronicek/sponsors`
 ```
 </details>
 
-## [/users/sponsoring](https://sponsors.trnck.dev/user/sponsoring)
+## /users/sponsoring
 Get all users who are sponsored by `user`.
 
-Example query: `https://sponsors.trnck.dev/svobodavl/sponsoring`
+Example query: [`https://sponsors.trnck.dev/svobodavl/sponsoring`](https://sponsors.trnck.dev/svobodavl/sponsoring)
 
 <details>
 <summary>
