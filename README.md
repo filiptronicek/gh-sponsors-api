@@ -6,7 +6,7 @@ A REST API for GitHub Sponsors
 ## /user/count
 Get the count of people who sponsor `user`.
 
-Example query: [`https://sponsors.trnck.dev/filiptronicek/count`](https://sponsors.trnck.dev/filiptronicek/county)
+Example query: [`https://sponsors.trnck.dev/filiptronicek/count`](https://sponsors.trnck.dev/filiptronicek/count)
 
 <details>
 <summary>
