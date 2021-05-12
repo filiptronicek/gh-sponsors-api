@@ -3,5 +3,8 @@
         {"src": "/count/(?<id>[^/]*)", "dest": "/api/main?u=$id"},
         {"src": "/sponsors/(?<id>[^/]*)", "dest": "/api/sponsors?u=$id"},
         {"src": "/sponsoring/(?<id>[^/]*)", "dest": "/api/sponsoring?u=$id"}
-    ]
+    ],
+    "github": {
+        "silent": true
+    }
 }
