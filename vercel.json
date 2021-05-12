@@ -1,7 +1,7 @@
 {
     "routes": [
-        {"src": "/(?<id>[^/]*)/count", "dest": "/api/main?u=$id"},
-        {"src": "/(?<id>[^/]*)/sponsors", "dest": "/api/sponsors?u=$id"},
-        {"src": "/(?<id>[^/]*)/sponsoring", "dest": "/api/sponsoring?u=$id"}
+        {"src": "/count/(?<id>[^/]*)", "dest": "/api/main?u=$id"},
+        {"src": "/sponsors/(?<id>[^/]*)", "dest": "/api/sponsors?u=$id"},
+        {"src": "/sponsoring/(?<id>[^/]*)", "dest": "/api/sponsoring?u=$id"}
     ]
 }
