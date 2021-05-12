@@ -3,7 +3,7 @@ A REST API for GitHub Sponsors
 
 ## Endpoints:  
 
-## /user/count
+## /count/user/
 Get the count of people who sponsor `user`.
 
 Example query: [`https://sponsors.trnck.dev/filiptronicek/count`](https://sponsors.trnck.dev/filiptronicek/count)
@@ -22,7 +22,7 @@ Example query: [`https://sponsors.trnck.dev/filiptronicek/count`](https://sponso
 ```
 </details>
 
-## /users/sponsors
+## /sponsors/user/
 Get details of people who sponsor `user`.
 
 Example query: [`https://sponsors.trnck.dev/filiptronicek/sponsors`](https://sponsors.trnck.dev/filiptronicek/sponsors)
@@ -196,7 +196,7 @@ Example query: [`https://sponsors.trnck.dev/filiptronicek/sponsors`](https://spo
 ```
 </details>
 
-## /users/sponsoring
+## /sponsoring/user/
 Get all users who are sponsored by `user`.
 
 Example query: [`https://sponsors.trnck.dev/svobodavl/sponsoring`](https://sponsors.trnck.dev/svobodavl/sponsoring)
