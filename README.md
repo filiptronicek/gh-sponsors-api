@@ -220,7 +220,7 @@ Example query: [`https://sponsors.trnck.dev/sponsoring/svobodavl`](https://spons
 </details>
 
 ## Notes
-- The `/sponsors/user/` and `/count/user/` endpoints got themselves an official API! you can use them like this: (https://github.com/github/feedback/discussions/3818)
+- The `/sponsors/user/` and `/count/user/` endpoints got themselves an official API (as of June of 2021)! you can use them like this: (https://github.com/github/feedback/discussions/3818)
 
 ```gql
 query {
