@@ -1,7 +1,7 @@
 # GitHub Sponsors API
 A REST API for GitHub Sponsors
 
-## Endpoints:  
+## Endpoints
 
 ## /count/user/
 Get the count of people who sponsor `user`.
@@ -218,3 +218,22 @@ Example query: [`https://sponsors.trnck.dev/sponsoring/svobodavl`](https://spons
 }
 ```
 </details>
+
+## Notes
+- The `/sponsors/user/` and `/count/user/` endpoints got themselves an official API! you can use them like this: (https://github.com/github/feedback/discussions/3818)
+
+```gql
+query {
+  user(login: "filiptronicek") {
+    ... on Sponsorable {
+      sponsors(first: 100) {
+        totalCount
+        nodes {
+          ... on User { login }
+          ... on Organization { login }
+        }
+      }
+    }
+  }
+}
+```
