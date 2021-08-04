@@ -237,3 +237,18 @@ query {
   }
 }
 ```
+- The `/sponsoring/user/` endpoint is implemented in the GraphQL API since August of 2021, usable like this: https://github.com/github/feedback/discussions/3818#discussioncomment-1131586
+
+```gql
+query {
+  user(login: "cheshire137") {
+    sponsoring(first: 10) {
+      totalCount
+      nodes {
+        ... on User { login }
+        ... on Organization { login }
+      }
+    }
+  }
+}
+```
