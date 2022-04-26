@@ -25,7 +25,7 @@ Example query: [`https://ghs.vercel.app/count/filiptronicek/`](https://ghs.verce
 ### /sponsors/user/
 Get details of people who sponsor `user`.
 
-Example query: [`https://ghs.vercel.app/`](https://ghs.vercel.app/sponsors/filiptronicek)
+Example query: [`https://ghs.vercel.app/sponsors/filiptronicek`](https://ghs.vercel.app/sponsors/filiptronicek)
 
 <details>
 <summary>
