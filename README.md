@@ -6,7 +6,7 @@ A REST API for GitHub Sponsors, if you need a GraphQL one, there is an offical A
 ### /count/user/
 Get the count of people who sponsor `user`.
 
-Example query: [`https://sponsors.trnck.dev/count/filiptronicek/`](https://sponsors.trnck.dev/count/filiptronicek)
+Example query: [`https://ghs.vercel.app/count/filiptronicek/`](https://ghs.vercel.app/count/filiptronicek)
 
 <details>
 <summary>
@@ -25,7 +25,7 @@ Example query: [`https://sponsors.trnck.dev/count/filiptronicek/`](https://spons
 ### /sponsors/user/
 Get details of people who sponsor `user`.
 
-Example query: [`https://sponsors.trnck.dev/sponsors/filiptronicek`](https://sponsors.trnck.dev/sponsors/filiptronicek)
+Example query: [`https://ghs.vercel.app/`](https://ghs.vercel.app/sponsors/filiptronicek)
 
 <details>
 <summary>
@@ -199,7 +199,7 @@ Example query: [`https://sponsors.trnck.dev/sponsors/filiptronicek`](https://spo
 ### /sponsoring/user/
 Get all users who are sponsored by `user`.
 
-Example query: [`https://sponsors.trnck.dev/sponsoring/svobodavl`](https://sponsors.trnck.dev/sponsoring/svobodavl)
+Example query: [`https://ghs.vercel.app/sponsoring/svobodavl`](https://ghs.vercel.app/sponsoring/svobodavl)
 
 <details>
 <summary>
