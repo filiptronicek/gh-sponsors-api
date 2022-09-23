@@ -1,5 +1,5 @@
 # GitHub Sponsors API
-A REST API for GitHub Sponsors, if you need a GraphQL one, there is an offical API. Some links and examples can be found in [the Notes section](#notes).
+A REST API for GitHub Sponsors, if you need a GraphQL one, there is an official API. Some links and examples can be found in [the Notes section](#notes).
 
 ## Endpoints
 
@@ -10,7 +10,7 @@ Example query: [`https://ghs.vercel.app/count/filiptronicek/`](https://ghs.verce
 
 <details>
 <summary>
-  Example responce:
+  Example response:
 </summary>
 
 ```json
@@ -29,7 +29,7 @@ Example query: [`https://ghs.vercel.app/sponsors/filiptronicek`](https://ghs.ver
 
 <details>
 <summary>
-  Example responce:
+  Example response:
 </summary>
 
 ```json
@@ -203,7 +203,7 @@ Example query: [`https://ghs.vercel.app/sponsoring/svobodavl`](https://ghs.verce
 
 <details>
 <summary>
-  Example responce:
+  Example response:
 </summary>
 
 ```json
