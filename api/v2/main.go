@@ -14,27 +14,43 @@ type Sponsors struct {
 	Past    int `json:"past"`
 }
 
-type Response struct {
+type ErrorResponse struct {
+	Status string `json:"status"`
+	Result string `json:"result"`
+}
+
+type SuccessResponse struct {
+	Status   string   `json:"status"`
 	Sponsors Sponsors `json:"sponsors"`
+}
+
+func generateErrorResponse(result string) string {
+	resp := ErrorResponse{
+		Status: "error",
+		Result: result,
+	}
+
+	jsonData, _ := json.Marshal(resp)
+	return string(jsonData)
 }
 
 func getSponsorCount(username string) string {
 	if username == "" {
-		return `{"sponsors": {"count":"Error: No user specified."}}`
+		return generateErrorResponse("No user specified.")
 	}
 
 	url := fmt.Sprintf("https://github.com/sponsors/%s", username)
 	htmlResponse, err := soup.Get(url)
 
 	if err != nil {
-		return `{"sponsors": {"count":"Error: Unable to fetch the page."}}`
+		return generateErrorResponse("Unable to fetch the page.")
 	}
 
 	doc := soup.HTMLParse(htmlResponse)
 
 	section := doc.Find("div", "id", "sponsors-section-list")
 	if section.Error != nil {
-		return `{"sponsors": {"count":"Error: GitHub Sponsors aren't setup with this user.", "error": "` + section.Error.Error() + `"}}`
+		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + section.Error.Error())
 	}
 
 	soup.SetDebug(true)
@@ -44,24 +60,25 @@ func getSponsorCount(username string) string {
 	pastCountElement := sponsorSection.FindNextElementSibling().Find("span")
 
 	if pastCountElement.Error != nil {
-		return `{"sponsors": {"count":"Error: GitHub Sponsors aren't setup with this user.", "error": "` + pastCountElement.Error.Error() + `"}}`
+		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + pastCountElement.Error.Error())
 	}
 
 	if currentCountElement.Error != nil {
-		return `{"sponsors": {"count":"Error: GitHub Sponsors aren't setup with this user.", "error": "` + currentCountElement.Error.Error() + `"}}`
+		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + currentCountElement.Error.Error())
 	}
 
 	currentCount, err := strconv.Atoi(currentCountElement.Text())
 	if err != nil {
-		return `{"sponsors": {"message": ` + err.Error() + `"}}`
+		return generateErrorResponse(err.Error())
 	}
 
 	pastCount, err := strconv.Atoi(pastCountElement.Text())
 	if err != nil {
-		return `{"sponsors": {"message": ` + err.Error() + `"}}`
+		return generateErrorResponse(err.Error())
 	}
 
-	resp := Response{
+	resp := SuccessResponse{
+		Status: "success",
 		Sponsors: Sponsors{
 			Current: currentCount,
 			Past:    pastCount,
@@ -70,7 +87,7 @@ func getSponsorCount(username string) string {
 
 	jsonData, err := json.Marshal(resp)
 	if err != nil {
-		return `{"sponsors": {"message":"failed to marshal response"}}`
+		return generateErrorResponse("Failed to marshal response")
 	}
 
 	return string(jsonData)
@@ -84,7 +101,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	username := params.Get("u")
 
 	if username == "" {
-		fmt.Fprint(w, `{"sponsors": {"count":"Error: No user specified."}}`)
+		fmt.Fprint(w, generateErrorResponse("No user specified."))
 		return
 	}
 
