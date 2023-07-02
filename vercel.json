@@ -1,13 +1,31 @@
 {
   "routes": [
-    { "src": "/", "dest": "/public/index.html" },
-    { "src": "/count/(?<id>[^/]*)", "dest": "/api/main?u=$id" },
-    { "src": "/sponsors/(?<id>[^/]*)", "dest": "/api/sponsors?u=$id" },
-    { "src": "/sponsoring/(?<id>[^/]*)", "dest": "/api/sponsoring?u=$id" },
-    { "src": "/v2/count/(?<id>[^/]*)", "dest": "/api/v2/main?u=$id" }
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/count/(?<id>[^/]*)",
+      "dest": "/api/main?u=$id"
+    },
+    {
+      "src": "/sponsors/(?<id>[^/]*)",
+      "dest": "/api/sponsors?u=$id"
+    },
+    {
+      "src": "/sponsoring/(?<id>[^/]*)",
+      "dest": "/api/sponsoring?u=$id"
+    },
+    {
+      "src": "/v2/count/(?<id>[^/]*)",
+      "dest": "/api/v2/main?u=$id"
+    },
+    {
+      "src": "/v2/sponsors/(?<id>[^/]*)",
+      "dest": "/api/v2/sponsors?u=$id"
+    }
   ],
   "github": {
     "silent": true
   }
 }
-
