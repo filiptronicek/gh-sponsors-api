@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"net/url"
 	"strconv"
 
 	"github.com/anaskhan96/soup"
@@ -19,20 +18,12 @@ type Response struct {
 	Sponsors Sponsors `json:"sponsors"`
 }
 
-func getSponsorCount(u string) string {
-	parsedUrl, err := url.Parse(u)
-	if err != nil {
-		return `{"sponsors": {"count":"Error: Invalid URL."}}`
-	}
-
-	queryParams := parsedUrl.Query()
-	usr := queryParams.Get("u")
-
-	if usr == "" {
+func getSponsorCount(username string) string {
+	if username == "" {
 		return `{"sponsors": {"count":"Error: No user specified."}}`
 	}
 
-	url := fmt.Sprintf("https://github.com/sponsors/%s", usr)
+	url := fmt.Sprintf("https://github.com/sponsors/%s", username)
 	htmlResponse, err := soup.Get(url)
 
 	if err != nil {
@@ -89,6 +80,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	sponsors := getSponsorCount(r.RequestURI)
+	params := r.URL.Query()
+	username := params.Get("u")
+
+	if username == "" {
+		fmt.Fprint(w, `{"sponsors": {"count":"Error: No user specified."}}`)
+		return
+	}
+
+	sponsors := getSponsorCount(username)
 	fmt.Fprint(w, sponsors)
 }
