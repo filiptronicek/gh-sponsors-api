@@ -9,29 +9,14 @@ import (
 	"github.com/anaskhan96/soup"
 )
 
-type Sponsors struct {
+type SponsorsCount struct {
 	Current int `json:"current"`
 	Past    int `json:"past"`
 }
 
-type ErrorResponse struct {
-	Status string `json:"status"`
-	Result string `json:"result"`
-}
-
-type SuccessResponse struct {
-	Status   string   `json:"status"`
-	Sponsors Sponsors `json:"sponsors"`
-}
-
-func generateErrorResponse(result string) string {
-	resp := ErrorResponse{
-		Status: "error",
-		Result: result,
-	}
-
-	jsonData, _ := json.Marshal(resp)
-	return string(jsonData)
+type SuccessResponseCount struct {
+	Status   string        `json:"status"`
+	Sponsors SponsorsCount `json:"sponsors"`
 }
 
 func getSponsorCount(username string) string {
@@ -77,9 +62,9 @@ func getSponsorCount(username string) string {
 		return generateErrorResponse(err.Error())
 	}
 
-	resp := SuccessResponse{
+	resp := SuccessResponseCount{
 		Status: "success",
-		Sponsors: Sponsors{
+		Sponsors: SponsorsCount{
 			Current: currentCount,
 			Past:    pastCount,
 		},
@@ -93,7 +78,7 @@ func getSponsorCount(username string) string {
 	return string(jsonData)
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func Main(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 

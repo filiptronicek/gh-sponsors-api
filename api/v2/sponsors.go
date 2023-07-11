@@ -23,7 +23,7 @@ type ErrorResponse struct {
 	Result string `json:"result"`
 }
 
-type SuccessResponse struct {
+type SuccessResponseSponsors struct {
 	Status   string   `json:"status"`
 	Sponsors Sponsors `json:"sponsors"`
 }
@@ -99,7 +99,7 @@ func getSponsors(username string) string {
 		})
 	}
 
-	resp := SuccessResponse{
+	resp := SuccessResponseSponsors{
 		Status: "success",
 		Sponsors: Sponsors{
 			Current: currentSponsorsList,
