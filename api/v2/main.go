@@ -3,6 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"strconv"
 
@@ -14,9 +15,24 @@ type SponsorsCount struct {
 	Past    int `json:"past"`
 }
 
+type ErrorResponse struct {
+	Status string `json:"status"`
+	Result string `json:"result"`
+}
+
 type SuccessResponseCount struct {
 	Status   string        `json:"status"`
 	Sponsors SponsorsCount `json:"sponsors"`
+}
+
+func generateErrorResponse(result string) string {
+	resp := ErrorResponse{
+		Status: "error",
+		Result: result,
+	}
+
+	jsonData, _ := json.Marshal(resp)
+	return string(jsonData)
 }
 
 func getSponsorCount(username string) string {
@@ -33,33 +49,68 @@ func getSponsorCount(username string) string {
 
 	doc := soup.HTMLParse(htmlResponse)
 
+	currentCount := 0
+	pastCount := 0
+
 	section := doc.Find("div", "id", "sponsors-section-list")
 	if section.Error != nil {
-		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + section.Error.Error())
-	}
+		inactiveUrl := url + "/sponsors_partial?filter=inactive"
+		htmlResponse, err = soup.Get(inactiveUrl)
+		if err != nil {
+			if err.Error() == io.EOF.Error() {
+				pastCount = 0
+			} else {
+				return generateErrorResponse("Unable to fetch the page." + err.Error())
+			}
+		} else {
+			doc = soup.HTMLParse(htmlResponse)
+			svgs := doc.FindAll("svg")
+			imgs := doc.FindAll("img")
 
-	soup.SetDebug(true)
+			pastCount = len(svgs) + len(imgs)
+		}
 
-	sponsorSection := section.Find("div")
-	currentCountElement := sponsorSection.Find("span")
-	pastCountElement := sponsorSection.FindNextElementSibling().Find("span")
+		activeUrl := url + "/sponsors_partial?filter=active"
+		htmlResponse, err = soup.Get(activeUrl)
+		if err != nil {
+			if err.Error() == io.EOF.Error() {
+				currentCount = 0
+			} else {
+				return generateErrorResponse("Unable to fetch the page." + err.Error())
+			}
+		} else {
+			doc = soup.HTMLParse(htmlResponse)
+			svgs := doc.FindAll("svg")
+			imgs := doc.FindAll("img")
 
-	if pastCountElement.Error != nil {
-		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + pastCountElement.Error.Error())
-	}
+			currentCount = len(svgs) + len(imgs)
+		}
 
-	if currentCountElement.Error != nil {
-		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + currentCountElement.Error.Error())
-	}
+		if pastCount == 0 && currentCount == 0 {
+			return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + section.Error.Error())
+		}
+	} else {
+		soup.SetDebug(true)
 
-	currentCount, err := strconv.Atoi(currentCountElement.Text())
-	if err != nil {
-		return generateErrorResponse(err.Error())
-	}
-
-	pastCount, err := strconv.Atoi(pastCountElement.Text())
-	if err != nil {
-		return generateErrorResponse(err.Error())
+		sponsorSection := section.Find("div")
+		currentCountElement := sponsorSection.Find("span")
+		pastCountElement := sponsorSection.FindNextElementSibling().Find("span")
+	
+		if pastCountElement.Error != nil {
+			return generateErrorResponse("An error occured: " + currentCountElement.Error.Error())
+		}
+		pastCount, err = strconv.Atoi(pastCountElement.Text())
+		if err != nil {
+			return generateErrorResponse(err.Error())
+		}
+	
+		if currentCountElement.Error != nil {
+			return generateErrorResponse("An error occured: " + currentCountElement.Error.Error())
+		}
+		currentCount, err = strconv.Atoi(currentCountElement.Text())
+		if err != nil {
+			return generateErrorResponse(err.Error())
+		}
 	}
 
 	resp := SuccessResponseCount{
