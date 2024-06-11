@@ -15,24 +15,9 @@ type SponsorsCount struct {
 	Past    int `json:"past"`
 }
 
-type ErrorResponse struct {
-	Status string `json:"status"`
-	Result string `json:"result"`
-}
-
 type SuccessResponseCount struct {
 	Status   string        `json:"status"`
 	Sponsors SponsorsCount `json:"sponsors"`
-}
-
-func generateErrorResponse(result string) string {
-	resp := ErrorResponse{
-		Status: "error",
-		Result: result,
-	}
-
-	jsonData, _ := json.Marshal(resp)
-	return string(jsonData)
 }
 
 func getSponsorCount(username string) string {
