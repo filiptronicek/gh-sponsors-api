@@ -23,6 +23,10 @@
     {
       "src": "/v2/sponsors/(?<id>[^/]*)",
       "dest": "/api/v2/sponsors?u=$id"
+    },
+    {
+      "src": "/v3/sponsors/(?<id>[^/]*)",
+      "dest": "/api/v3/sponsors?u=$id"
     }
   ],
   "github": {
