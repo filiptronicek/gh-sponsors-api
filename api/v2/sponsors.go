@@ -61,8 +61,8 @@ func getSponsors(username string) string {
 
 	sponsorContainers := section.FindAll("remote-pagination")
 
-	pastSponsorsContainer := sponsorContainers[0]
-	currentSponsorsContainer := sponsorContainers[1]
+	pastSponsorsContainer := sponsorContainers[1]
+	currentSponsorsContainer := sponsorContainers[0]
 
 	pastSponsors := pastSponsorsContainer.FindAll("a", "data-hovercard-type", "user")
 	currentSponsors := currentSponsorsContainer.FindAll("a", "data-hovercard-type", "user")
