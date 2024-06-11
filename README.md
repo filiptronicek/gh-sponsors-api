@@ -1,6 +1,8 @@
 # GitHub Sponsors API
 
-A REST API for GitHub Sponsors, if you need a GraphQL one, there is an official API. Some links and examples can be found in [the Notes section](#notes).
+An unofficial REST API for GitHub Sponsors. 
+
+If you need something for GraphQL instead, there is an official API provided by GitHub. Some links and examples can be found in [the Notes section](#notes).
 
 ## Endpoints
 
