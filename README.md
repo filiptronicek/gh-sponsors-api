@@ -1,9 +1,11 @@
 # GitHub Sponsors API
+
 A REST API for GitHub Sponsors, if you need a GraphQL one, there is an official API. Some links and examples can be found in [the Notes section](#notes).
 
 ## Endpoints
 
 ### /v2/count/user/
+
 Get the count of people who sponsor `user`. Includes private sponsors.
 
 Example query: [`https://ghs.vercel.app/v2/count/filiptronicek/`](https://ghs.vercel.app/v2/count/filiptronicek)
@@ -24,10 +26,11 @@ Example query: [`https://ghs.vercel.app/v2/count/filiptronicek/`](https://ghs.ve
 ```
 </details>
 
-### /v2/sponsors/user/
+### /v3/sponsors/user/
+
 Get details of people who sponsor `user`. Does **not** include private sponsors.
 
-Example query: [`https://ghs.vercel.app/v2/sponsors/filiptronicek`](https://ghs.vercel.app/v2/sponsors/filiptronicek)
+Example query: [`https://ghs.vercel.app/v3/sponsors/filiptronicek`](https://ghs.vercel.app/v3/sponsors/filiptronicek)
 
 <details>
 <summary>
@@ -119,6 +122,7 @@ Example query: [`https://ghs.vercel.app/sponsoring/svobodavl`](https://ghs.verce
 </details>
 
 ## Notes
+
 - The `/sponsors/user/` and `/count/user/` endpoints got themselves an official API (as of June of 2021)! you can use them like this: (https://github.com/github/feedback/discussions/3818)
 
 ```gql
