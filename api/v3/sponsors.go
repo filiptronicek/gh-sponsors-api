@@ -95,7 +95,9 @@ func paginateSponsors(username, filter string) ([]Sponsor, error) {
 
 func parseSponsors(doc soup.Root) []Sponsor {
 	sponsorsList := []Sponsor{}
-	sponsorContainers := doc.FindAll("a", "data-hovercard-type", "user")
+	userSponsors := doc.FindAll("a", "data-hovercard-type", "user")
+	orgSponsors := doc.FindAll("a", "data-hovercard-type", "organization")
+	sponsorContainers := append(userSponsors, orgSponsors...)
 
 	for _, sponsor := range sponsorContainers {
 		img := sponsor.Find("img")

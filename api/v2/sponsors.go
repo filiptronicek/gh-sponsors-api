@@ -64,8 +64,14 @@ func getSponsors(username string) string {
 	pastSponsorsContainer := sponsorContainers[1]
 	currentSponsorsContainer := sponsorContainers[0]
 
-	pastSponsors := pastSponsorsContainer.FindAll("a", "data-hovercard-type", "user")
-	currentSponsors := currentSponsorsContainer.FindAll("a", "data-hovercard-type", "user")
+	pastSponsors := append(
+		pastSponsorsContainer.FindAll("a", "data-hovercard-type", "user"),
+		pastSponsorsContainer.FindAll("a", "data-hovercard-type", "organization")...,
+	)
+	currentSponsors := append(
+		currentSponsorsContainer.FindAll("a", "data-hovercard-type", "user"),
+		currentSponsorsContainer.FindAll("a", "data-hovercard-type", "organization")...,
+	)
 
 	if pastSponsorsContainer.Error != nil {
 		return generateErrorResponse("GitHub Sponsors aren't setup with this user. Error: " + pastSponsorsContainer.Error.Error())
